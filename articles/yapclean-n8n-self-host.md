@@ -31,8 +31,8 @@ Before touching the server command line, we map the subdomain to our VPS.
 
 In your DNS provider panel (e.g., Cloudflare), create an **A Record**:
 *   **Type:** `A`
-*   **Name/Host:** `solutions` (points to `solutions.yapclean.tech`)
-*   **Value (IPv4 Address):** `123.45.67.89` (your VPS public IP)
+*   **Name/Host:** `solutions` (points to `<your_domain>`)
+*   **Value (IPv4 Address):** `<your_server_IP>` (your VPS public IP)
 *   **Proxy Status:** **DNS Only (Disabled)**.
     > [!IMPORTANT]
     > Disabling Cloudflare's proxy (orange cloud) during initial setup is critical. Certbot uses HTTP-01 challenges to prove domain ownership. If the proxy is enabled, Cloudflare intercepts the request, which can cause Let's Encrypt validation to fail. You can safely re-enable the proxy after SSL generation.
@@ -88,17 +88,17 @@ We create a directory to house our n8n stack config and volume directories, keep
     ```env
     N8N_PORT=5678
     N8N_PROTOCOL=https
-    N8N_HOST=solutions.yapclean.tech
-    WEBHOOK_URL=https://solutions.yapclean.tech/
+    N8N_HOST=<your_domain>
+    WEBHOOK_URL=https://<your_domain>/
     N8N_SECURE_COOKIE=false
     GENERIC_TIMEZONE=Europe/Kyiv
     TZ=Europe/Kyiv
     N8N_USER_MANAGEMENT=enabled
-    N8N_INITIAL_OWNER_EMAIL=admin@solutions.yapclean.tech
-    N8N_INITIAL_OWNER_PASSWORD=<SECURE_GENERATED_PASSWORD>
+    N8N_INITIAL_OWNER_EMAIL=<your_email>
+    N8N_INITIAL_OWNER_PASSWORD=<secure_database_password>
     N8N_INITIAL_OWNER_FIRST_NAME=Admin
     N8N_INITIAL_OWNER_LAST_NAME=User
-    N8N_ENCRYPTION_KEY=<SECURE_GENERATED_KEY>
+    N8N_ENCRYPTION_KEY=<secure_encryption_key>
     DATA_FOLDER=/home/node/.n8n
     ```
     > [!TIP]
@@ -119,8 +119,8 @@ We create a directory to house our n8n stack config and volume directories, keep
         environment:
           - N8N_PORT=5678
           - N8N_PROTOCOL=https
-          - N8N_HOST=solutions.yapclean.tech
-          - WEBHOOK_URL=https://solutions.yapclean.tech/
+          - N8N_HOST=<your_domain>
+          - WEBHOOK_URL=https://<your_domain>/
           - GENERIC_TIMEZONE=Europe/Kyiv
           - TZ=Europe/Kyiv
           - N8N_SECURE_COOKIE=false
@@ -172,7 +172,7 @@ Now we install Nginx on the host. It acts as the gateway, receiving HTTPS traffi
     server {
         listen 80;
         listen [::]:80;
-        server_name solutions.yapclean.tech;
+        server_name <your_domain>;
 
         client_max_body_size 100m;
 
@@ -221,7 +221,7 @@ Let's secure the connection. We request a free SSL/TLS certificate from Let's En
 2.  **Generate the certificate:**
     We run this non-interactively (ideal for automation or deployment scripts):
     ```bash
-    sudo certbot --nginx -d solutions.yapclean.tech --non-interactive --agree-tos --email admin@solutions.yapclean.tech
+    sudo certbot --nginx -d <your_domain> --non-interactive --agree-tos --email <your_email>
     ```
     *Certbot automatically retrieves the certificates, modifies the Nginx config to load them, and writes a global HTTP-to-HTTPS redirect rule.*
 
@@ -299,9 +299,9 @@ If you are using an AI agent (such as Claude, Cursor, or an agentic coding assis
 You are an expert systems administrator. Your task is to deploy a production-ready, self-hosted n8n instance on an Ubuntu VPS using Docker Compose, Nginx, and Certbot, with a systemd timer for daily image updates.
 
 ## Variables Required:
-- `DOMAIN` (e.g., solutions.yapclean.tech)
-- `EMAIL` (e.g., admin@solutions.yapclean.tech)
-- `SERVER_IP` (e.g., 123.45.67.89)
+- `DOMAIN` (e.g., <your_domain>)
+- `EMAIL` (e.g., <your_email>)
+- `SERVER_IP` (e.g., <your_server_IP>)
 
 ## Execution Protocol:
 
@@ -335,8 +335,8 @@ You do not need to run a single command yourself. If you already use a terminal-
 You are a Senior DevOps Engineer. Deploy a production-ready, self-hosted n8n instance.
 
 ## Variables (substitute before running)
-- {{domain}}     = your subdomain, e.g. solutions.yapclean.tech
-- {{SERVER_IP}}  = your VPS public IP, e.g. 123.45.67.89
+- {{domain}}     = your subdomain, e.g. <your_domain>
+- {{SERVER_IP}}  = your VPS public IP, e.g. <your_server_IP>
 - {{email}}      = owner account email, e.g. admin@{{domain}}
 - {{HOME}}       = deploying user home, e.g. /home/ubuntu
 - {{TIMEZONE}}   = server timezone, e.g. Europe/Kyiv
