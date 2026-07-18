@@ -396,4 +396,4 @@ The collection is template-driven: every environment value is a `{{placeholder}}
 
 Setting up secure infrastructure takes time and requires ongoing maintenance to get right. If you're a business owner or agency who wants this exact setup but doesn't want to touch a Linux terminal—I can do it for you. I offer a turnkey deployment service. I will build your server, secure the firewall, install the software, set up SSL, and hand over the master passwords so you retain 100% ownership. 
 
- 👉 [Let's discuss your infrastructure on Upwork - link]
+ 👉 [Let's discuss your infrastructure on Upwork](https://www.upwork.com/freelancers/~0135ef1aec6d972a2d)
