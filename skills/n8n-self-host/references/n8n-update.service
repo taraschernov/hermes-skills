@@ -1,0 +1,8 @@
+[Unit]
+Description=n8n auto-update (docker-compose pull + up)
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart={{HOME}}/n8n/update-n8n.sh

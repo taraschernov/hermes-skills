@@ -1,0 +1,11 @@
+[Unit]
+Description=Run n8n auto-update daily
+
+[Timer]
+OnCalendar=*-*-* 04:17:00
+Persistent=true
+RandomizedDelaySec=600
+Unit=n8n-update.service
+
+[Install]
+WantedBy=timers.target
