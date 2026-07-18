@@ -363,6 +363,35 @@ That is the complete, field-tested procedure. Hand it to your agent and it will 
 
 ---
 
+## Get the Reusable Skill
+
+Everything in this article is also packaged as a portable, open-source skill you can drop into your own agent or fork for your team. No copy-paste from the post required.
+
+**Repository:** [github.com/taraschernov/hermes-skills](https://github.com/taraschernov/hermes-skills)
+
+The `n8n-self-host` skill folder ships:
+- `SKILL.md` — Hermes/Claude-style skill with frontmatter (auto-loads on matching requests).
+- `prompt.md` — a self-contained deployment prompt for *any* chat agent (no plugin needed).
+- `references/` — ready-to-adapt configs: `docker-compose.yml`, `nginx-n8n.conf`, `n8n-update.service`, `n8n-update.timer`.
+
+### Add it to your agent
+
+**If you use Hermes (or a Claude-style skills system):**
+```bash
+cp -r skills/n8n-self-host ~/.hermes/skills/devops/n8n-self-host
+```
+The agent loads it automatically when you ask to deploy or self-host n8n.
+
+**If you use any other chat agent (Claude, Cursor, a coding assistant, etc.):**
+Open `skills/n8n-self-host/prompt.md` from the repo and paste its contents into the chat. It is a complete, standalone instruction set — no skills plugin required.
+
+**If you have no agent:**
+Use the files in `references/` as drop-in configs and follow the steps in this article (or the `articles/` walkthrough in the same repo).
+
+The collection is template-driven: every environment value is a `{{placeholder}}`, and no real secrets, IPs, or emails are committed. MIT licensed — reuse freely.
+
+---
+
 ## Ready to Automate Your Infrastructure Without the SaaS Tax?
 
 Setting up secure infrastructure takes time and requires ongoing maintenance to get right. If you're a business owner or agency who wants this exact setup but doesn't want to touch a Linux terminal—I can do it for you. I offer a turnkey deployment service. I will build your server, secure the firewall, install the software, set up SSL, and hand over the master passwords so you retain 100% ownership. 
