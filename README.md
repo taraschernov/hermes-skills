@@ -34,6 +34,7 @@ Read `articles/<name>.md` (when present) for a full walkthrough with explanation
 | Skill | What it deploys | Agent | Manual |
 |-------|-----------------|-------|--------|
 | `n8n-self-host` | n8n workflow automation via Docker + nginx + Let's Encrypt, daily systemd auto-update | [SKILL.md](skills/n8n-self-host/SKILL.md) · [prompt.md](skills/n8n-self-host/prompt.md) | [article](articles/yapclean-n8n-self-host.md) |
+| `ghost-self-host` | Ghost CMS publishing platform via Docker + MySQL 8 + nginx + Let's Encrypt | [SKILL.md](skills/ghost-self-host/SKILL.md) · [prompt.md](skills/ghost-self-host/prompt.md) | [article](articles/ghost-self-host.md) |
 
 ---
 
